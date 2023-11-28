@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <title>Resistance Detection</title>
+</head>
+<body>
+
+<!-- Add Number Section -->
+<div id="addNumberSection">
+    <h2>Resistance Detection</h2>
+    <form method="post" action="{% url 'hello' %}">
+        {% csrf_token %}
+        <label for="LC">LC:</label>
+        <input type="text" name="LC" required pattern="-?[0-9]+(\.[0-9]+)?">
+        <br>
+        <label for="PC">PC:</label>
+        <input type="text" name="PC" required pattern="-?[0-9]+(\.[0-9]+)?">
+        <br>
+        <label for="L/D">LD:</label>
+        <input type="text" name="L/D" required pattern="-?[0-9]+(\.[0-9]+)?">
+        <br>
+        <label for="B/T">BT:</label>
+        <input type="text" name="B/T" required pattern="-?[0-9]+(\.[0-9]+)?">
+        <br>
+        <label for="L/B">LB:</label>
+        <input type="text" name="L/B" required pattern="-?[0-9]+(\.[0-9]+)?">
+        <br>
+        <label for="Fr">Fr:</label>
+        <input type="text" name="Fr" required pattern="-?[0-9]+(\.[0-9]+)?">
+        <br>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<!-- Result Section (Initially Hidden) -->
+<div id="resultSection" {% if result is not None %}style="display:block;"{% endif %}>
+    <h2>Result</h2>
+    <p id="resultText"> {{ result }}</p>
+</div>
+
+</body>
+</html>
